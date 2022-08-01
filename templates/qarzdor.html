@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Qarzdorning olgan mahsulotlari{% endblock title %}
+
+{% block content %}
+<h3 class="border-bottom pb-1 my-4">{{qarzdor.name}}ning qarzlari
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a href="{% url 'qarzdorlar' %}"><button type="button" class="btn btn-outline-dark"> Orqaga </button></a> ||
+    <a href="{% url 'qarz_new' qarzdor.id %}"><button class="btn btn-warning me-md-2" type="button">Qarz qo'shish </button></a>
+</div>
+</h3>
+<table style="width:70%">
+    <tr>
+    <th>Mahsulot nomi</th>
+    <th>Mahsulot olingan vaqti</th>
+    <th>Narxi</th>
+    <th>Tahrirlash va o'chirish</th>
+    </tr>
+    {% for qarz in qarzlar %}
+
+  <tr>
+    <td>{{ qarz.product }}</td>
+    <td>{{ qarz.date }}       </td>
+    <td><h5>{{ qarz.price }}</h5></td>
+      <td><a href="{% url 'qarz_edit' qarz.pk %}" class="btn btn-primary ml-2">Tahrirlash</a>
+          <a href="{% url 'qarz_delete' qarz.id %}" class="btn btn-danger ml-2">O'chirish</a>
+      </td>
+  </tr>
+    {% endfor %}
+    </table>
+<h4 class="border-bottom pb-2 my-4">Umumiy summa: {{ summa }}</h4>
+{% endblock content %}

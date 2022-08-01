@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Qora daftar{% endblock title %}
+
+{% block content %}
+<h3 class="border-bottom pb-1 my-4">Qarzdorlar ro'yxati:
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="{% url 'qarzdor_new' %}"><button class="btn btn-warning me-md-2" type="button">Qarzdor qo'shish </button></a>
+    </div>
+</h3>
+    <table style="width:70%">
+    <tr>
+    <th>Qarzdor ismi</th>
+    <th>Ro'yxatga olingan vaqti</th>
+    <th>Telefon</th>
+    <th>Tahrirlash va o'chirish</th>
+    </tr>
+    {% for qarzdor in qarzdorlar %}
+
+  <tr>
+    <td><h5><a href="{% url 'qarzdor' qarzdor.id %}">{{ qarzdor.name }}</a></h5></td>
+    <td>{{ qarzdor.date }}       </td>
+    <td>{{ qarzdor.phone }}      </td>
+      <td><a href="{% url 'qarzdor_edit' qarzdor.id %}" class="btn btn-primary ml-2">Tahrirlash</a>
+          <a href="{% url 'qarzdor_delete' qarzdor.pk %}" class="btn btn-danger ml-2">O'chirish</a>
+      </td>
+  </tr>
+
+    {% endfor %}
+    </table>
+{% endblock content %}

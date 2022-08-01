@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title%}Qarzdor qo'shish{% endblock title%}
+
+{% block content %}
+    <h3 class="border-bottom pb-1 my-4">Qarzdorni qo'shish</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}<br>
+        <button class="btn btn-success ml-2" type="submit">Saqlash</button>
+        <a href="{% url 'qarzdorlar' %}" class="btn btn-danger ml-2">Bekor qilish</a>
+    </form>
+{% endblock content %}

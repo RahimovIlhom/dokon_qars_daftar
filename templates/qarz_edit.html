@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Qarzni tahrirlash{% endblock title %}
+
+{% block content %}
+<h3 class="border-bottom pb-1 my-4">{{ object.product }} ma'lumotlarini yangilash:
+</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-info ml-2" type="submit">Saqlash</button>
+        <a href="{% url 'qarzdor' qarzdor.qarzdorlar.id %}" class="btn btn-danger ml-2">Bekor qilish</a>
+    </form>
+{% endblock content %}
